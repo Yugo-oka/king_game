@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ジャンケン</title>
+    <link rel="stylesheet" href=".css">
+</head>
+
+<script Language="JavaScript">
+
+   r=0;
+
+      function start_j(){
+         r=Math.random();			
+         document.img.src="./img/start.gif";
+      }
+
+      function gu()	
+      {
+         if (r<0.34) { document.img.src="./img/gu.gif"; 	
+                     setTimeout('draw()',300); }   
+      
+         if (r>=0.34 && r<0.67) { document.img.src="./img/choki.gif"; 
+                  setTimeout('lost()',300); }
+         if (r>=0.67) { document.img.src="./img/pa.gif";
+                     setTimeout('win()',300); }
+      }
+
+      function choki(){
+
+         if (r<0.34) { document.img.src="./img/gu.gif"; 	
+                     setTimeout('win()',300); }   
+      
+         if (r>=0.34 && r<0.67) { document.img.src="./img/choki.gif"; 
+                  setTimeout('draw()',300); }
+         if (r>=0.67) { document.img.src="./img/pa.gif";
+                     setTimeout('lost()',300); }
+      }
+
+
+      function pa(){
+
+         if (r<0.34) { document.img.src="./img/gu.gif"; 	
+                     setTimeout('lost()',300); }   
+      
+         if (r>=0.34 && r<0.67) { document.img.src="./img/choki.gif"; 
+                  setTimeout('win()',300); }
+         if (r>=0.67) { document.img.src="./img/pa.gif";
+                     setTimeout('draw()',300); }
+      }
+
+      function win(){
+         document.myform.ransu.value="負け.";
+         document.img.src="./img/banzai.jpg";
+      }
+
+      function lost(){
+         document.myform.ransu.value="勝ち!";	
+         document.img.src="./img/udekumi.jpg";
+      }
+
+      function draw(){
+         document.myform.ransu.value="引き分け."; 
+         document.img.src="./img/try.jpg";	
+      }
+
+</script>
+
+   <body>
+      <center>
+         <form name="myform">
+            <div class="teo">
+         <input type="button" class="start" value="スタートしてね！！" onClick="start_j()">
+         <a href="king.html"><input type="button" id="btn" class="step" value="王様がクリックしてね！"></a>
+         </div>
+         <img src="./img/try.jpg" name="img">
+         <table border="1" cellspacing="0" cellpadding="1">
+            <tr>
+            <td><img type="button" src="./img/rock.png" onClick="gu()"></td>
+            <td><img type="button" src="./img/scissors.png" onClick="choki()"></td>
+            <td><img type="button" src="./img/paper.png" onClick="pa()"></td><br>
+            </tr>
+            </table>
+            <p>結果：<input type="text" name="ransu" class="ransu"></p>
+         </form>
+      </center>
+   </body>
+   
+   <style>
+
+   body{
+    background-image: url("./img/background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    font-family: "Nico Moji";
+   }
+
+      .start{
+         display: inline;
+         background-color: black;
+         color: white;
+         padding: 13px 55px;
+         border-radius: 6em;
+         font-size: 20px;
+         cursor: pointer;
+
+      }
+
+      p{
+         display: block;
+         font-size: 30px;
+      }
+
+      p .ransu{
+         padding-top: 14px;
+         padding-right: 70px;
+         font-size: 30px;
+      }
+
+      #btn{
+         display: inline;
+         background-color: yellow;
+         color: black;
+         padding: 13px 55px;
+         border-radius: 6em;
+         font-size: 20px;
+         cursor: pointer;
+      }
+
+      table{
+         cursor: pointer;
+      }
+   </style>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>王様ゲーム</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="king">
+        <h1 class="title">王様ゲーム</h1>
+        <p class="number"><input type="text" id="num" placeholder="人数:"></p>
+        <p class="btn"><input type="button" id="btn" class="king_tell" value="王様が命ずる！" onclick="kingSaid();"></p>
+        <p id="result"></p>
+    </div>
+
+    <script class="telling">
+        function kingSaid(){
+
+            //変数定義
+            var orders = [
+                "好きな所を言いなさい",
+                "デコピンしなさい",
+                "褒めちぎりなさい",
+                "ビンタをしなさい",
+                "悪口を言いなさい",
+                "抱きつきなさい",
+                "笑わせなさい",
+                "自慢話をしなさい",
+            ];
+            //乱数に配列を割りあてる★ここがポイント！　配列に乱数を割りあてる
+            var order = orders[Math.floor(Math.random() * orders.length)];        
+            //人数の入力値を取得
+            var num = document.getElementById("num").value;
+            //乱数に当てはめる
+            var p1 = Math.floor(Math.random() * (num)) + 1;
+            var p2 = Math.floor(Math.random() * (num)) + 1;
+
+            //入力人数が1人の場合の処理
+            if( num < 2){
+                p2 = 1;
+
+            //p1とp2の重複を避ける処理
+            }else{    
+               do{
+                  p2 = Math.floor(Math.random() * (num)) + 1;
+                }while (p1==p2);
+            }
+            document.getElementById("result").innerHTML = "#"+p1+"の人が"+p2+"の人に"+order;
+
+        }
+    </script> 
+</body>
+</html>
